@@ -3,7 +3,7 @@ import feedparser, time
 URL="http://rss.blog.naver.com/kwmingyu" 
 RSS_FEED = feedparser.parse(URL)
 
-markdown_text += """
+markdown_text = """
 
 ## ✅ Latest Blog Post
 
