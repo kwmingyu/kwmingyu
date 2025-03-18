@@ -31,11 +31,15 @@ jobs:
       run: |
         python main.py
     - name: Update README.md file
+      env:
+        PAT: ${{ secrets.PAT }}  # GitHub Secrets에 저장된 Personal Access Token 사용
       run: | 
         git pull
         git add .
         git diff
         git config --local user.email "kwmingyu@naver.com"
         git config --local user.name "kwmingyu"
-        git commit -m "Updating Blog Posts"
-        git push
+        git commit -m "Updating Blog Posts" || echo "No changes to commit"
+        git remote set-url origin https://kwmingyu:${PAT}@github.com/kwmingyu/kwmingyu.git
+        git push origin main
+
